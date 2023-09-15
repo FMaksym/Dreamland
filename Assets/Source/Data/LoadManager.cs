@@ -13,18 +13,6 @@ public class LoadManager
 
     public GameData LoadGame(GameData gameData, List<LandForPurchaseData> territoriesData, List<BuildForPurchaseData> buildingsData)
     {
-        //if (File.Exists(_savePath))
-        //{
-        //    string json = File.ReadAllText(_savePath);
-        //    if (!string.IsNullOrEmpty(json))
-        //    {
-        //        return JsonUtility.FromJson<GameData>(json);
-        //    }
-        //}
-
-        //File.Create(_savePath).Dispose();
-        //return new GameData();
-
         if (File.Exists(_savePath))
         {
             string json = File.ReadAllText(_savePath);
@@ -39,7 +27,6 @@ public class LoadManager
             gameData.buildingsData = buildingsData;
         }
 
-        // Если файл не существует или пуст, возвращаем переданный экземпляр GameData
         return gameData;
     }
 }
