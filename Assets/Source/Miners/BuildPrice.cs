@@ -70,6 +70,13 @@ public class BuildPrice : MonoBehaviour, ISerializationCallbackReceiver
             _priceValues.RemoveAt(index);
         }
     }
+
+    public void SetPrice(Dictionary<string, int> newPrice)
+    {
+        Price = newPrice;
+        UpdatePrice(Price);
+    }
+
     public Dictionary<string, int> GetPrice()
     {
         return Price;

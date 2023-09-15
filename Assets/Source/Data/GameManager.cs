@@ -24,7 +24,40 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        LoadGameData();
         RequestToFile();
+    }
+
+    private void LoadGameData()
+    {
+        foreach (LandForPurchaseData territoryData in _gameData.territoriesData)
+        {
+            LandForPurchaseData territory = GetTerritoryByName(territoryData.name);
+            if (territory != null)
+            {
+                territory.isPurchased = territoryData.isPurchased;
+                territory.landObject.SetActive(territoryData.mainObjectActive);
+                territory.priceObject.gameObject.SetActive(territoryData.priceObjectActive);
+                territory.priceObject.SetPrice(territoryData.price);
+            }
+        }
+
+        foreach (BuildForPurchaseData buildingData in _gameData.buildingsData)
+        {
+            BuildForPurchaseData building = GetBuildingByName(buildingData.name);
+            if (building != null)
+            {
+                building.isPurchased = buildingData.isPurchased;
+                building.mainObject.SetActive(buildingData.mainObjectActive);
+                building.priceObject.gameObject.SetActive(buildingData.priceObjectActive);
+                building.priceObject.SetPrice(buildingData.price);
+            }
+        }
+
+        foreach (KeyValuePair<string, int> item in _gameData.inventory)
+        {
+            inventory.AddItem(item.Key, item.Value);
+        }
     }
 
     private void RequestToFile()
@@ -43,11 +76,9 @@ public class GameManager : MonoBehaviour
     {
         _saveManager = new SaveManager();
         _loadManager = new LoadManager();
-        _gameData = _loadManager.LoadGame();
-
+        _gameData = _loadManager.LoadGame(_gameData, territoriesData, buildingsData);
 
         // Находим все объекты с компонентом LandForPurchaseData на сцене
-
         foreach (LandForPurchaseData territoryData in _gameData.territoriesData)
         {
             bool isActive = territoryData.isActive;
@@ -101,9 +132,7 @@ public class GameManager : MonoBehaviour
         if (territories.ContainsKey(name))
         {
             return territories[name];
-        }
-        else
-        {
+        }else{
             return null;
         }
     }
@@ -113,15 +142,15 @@ public class GameManager : MonoBehaviour
         if (buildings.ContainsKey(name))
         {
             return buildings[name];
-        }
-        else
-        {
+        }else{
             return null;
         }
     }
 
     void OnApplicationQuit()
     {
+        Debug.Log("OnApplicationQuit has been called");
+
         foreach (LandForPurchaseData territoryData in _gameData.territoriesData)
         {
             string territoryName = territoryData.name;

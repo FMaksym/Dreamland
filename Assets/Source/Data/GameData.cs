@@ -10,8 +10,15 @@ public class GameData
 
     public GameData()
     {
-        territoriesData = new List<LandForPurchaseData>();
-        buildingsData = new List<BuildForPurchaseData>();
-        inventory = new Dictionary<string, int>();
+        if (territoriesData == null)
+            territoriesData = new List<LandForPurchaseData>();
+        if (buildingsData == null)
+            buildingsData = new List<BuildForPurchaseData>();
+        if (inventory == null)
+            inventory = new Dictionary<string, int>();
+
+        //territoriesData = new List<LandForPurchaseData>();
+        //buildingsData = new List<BuildForPurchaseData>();
+        //inventory = new Dictionary<string, int>();
     }
 }
