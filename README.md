@@ -13,5 +13,5 @@
    </p>Game optimized for mobile(materials, meshes, source etc.).
    
    </p>Link to build:
-https://github.com/FMaksym/FantasyFarm/blob/main/Assets/Build/FantasyFarm.apk
+https://github.com/FMaksym/FantasyFarm/blob/main/Assets/Build
 
