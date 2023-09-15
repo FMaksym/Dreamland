@@ -16,9 +16,5 @@ public class GameData
             buildingsData = new List<BuildForPurchaseData>();
         if (inventory == null)
             inventory = new Dictionary<string, int>();
-
-        //territoriesData = new List<LandForPurchaseData>();
-        //buildingsData = new List<BuildForPurchaseData>();
-        //inventory = new Dictionary<string, int>();
     }
 }
