@@ -19,7 +19,7 @@ public class BuildPrice : MonoBehaviour, ISerializationCallbackReceiver
 
     private void Start()
     {
-        UpdatePrice(Price);
+        SetPrice(buildForPurchaseData.price);
     }
 
     public void OnBeforeSerialize()
@@ -40,6 +40,7 @@ public class BuildPrice : MonoBehaviour, ISerializationCallbackReceiver
             Price.Add(_priceKeys[i], _priceValues[i]);
         }
         _isDirty = true;
+        buildForPurchaseData.price = Price;
     }
 
     public void UpdatePrice(Dictionary<string, int> newPrice)
@@ -53,6 +54,7 @@ public class BuildPrice : MonoBehaviour, ISerializationCallbackReceiver
                 _priceTexts[i].text = value.ToString();
             }
         }
+        buildForPurchaseData.price = newPrice;
         _isDirty = true;
     }
 

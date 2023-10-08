@@ -1,11 +1,11 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Inventory : MonoBehaviour
 {
-    private Dictionary<string, int> _items = new();
+    [SerializeField] public Dictionary<string, int> _items = new();
     public event Action<string, int> OnResourceChanged;
 
     public void AddItem(string item, int amount)
@@ -40,5 +40,10 @@ public class Inventory : MonoBehaviour
     public Dictionary<string, int> GetItems()
     {
         return _items;
+    }
+
+    public void SetItems(Dictionary<string, int> items)
+    {
+        _items = items;
     }
 }

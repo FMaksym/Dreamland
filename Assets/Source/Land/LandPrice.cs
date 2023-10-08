@@ -18,7 +18,7 @@ public class LandPrice : MonoBehaviour, ISerializationCallbackReceiver
 
     private void Start()
     {
-        UpdatePrice(Price);
+        UpdatePrice(landForPurchaseData.price);
     }
 
     public void OnBeforeSerialize()
@@ -38,6 +38,7 @@ public class LandPrice : MonoBehaviour, ISerializationCallbackReceiver
         {
             Price.Add(_priceKeys[i], _priceValues[i]);
         }
+        landForPurchaseData.price = Price;
         _isDirty = true;
     }
 
@@ -52,6 +53,7 @@ public class LandPrice : MonoBehaviour, ISerializationCallbackReceiver
                 _priceTexts[i].text = value.ToString();
             }
         }
+        landForPurchaseData.price = newPrice;
         _isDirty = true;
     }
 
