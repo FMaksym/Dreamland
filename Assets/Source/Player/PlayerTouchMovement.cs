@@ -8,13 +8,13 @@ public class PlayerTouchMovement : MonoBehaviour
     public float _speed;
     public Animator _animator;
 
+    private bool CanMove = true;
+    private Finger _movementFinger;
+    private Vector2 _movementAmount;
+
     [SerializeField] private Vector2 _joystickSize = new (500, 500);
     [SerializeField] private FloatingJoystick _joystick;
     [SerializeField] private NavMeshAgent _player;
-
-    public bool CanMove = true;
-    private Finger _movementFinger;
-    private Vector2 _movementAmount;
 
     private void OnEnable()
     {
