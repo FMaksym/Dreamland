@@ -62,13 +62,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81128db651c42b648818992664f96bb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPickedUp: 1
   _pickUpRadius: 0.4
   _pickUpSpeed: 30
-  _collected: 0
   _startPosition: {fileID: 4002589787672319174}
   _growFood: {fileID: 4021722152884943470}
-  isPlayerInRange: 0
-  isPickedUp: 1
 --- !u!1001 &6935110697482890131
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -175,6 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameOfItem: Carrot
+  _score: 1
 --- !u!4 &7752235272804996162 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 840781731969712081, guid: 2cff005717122d94198957f2be2c9b9c,

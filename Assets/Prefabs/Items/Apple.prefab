@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameOfItem: Apple
+  _score: 2
 --- !u!54 &3133615766009072783
 Rigidbody:
   m_ObjectHideFlags: 0
