@@ -7,6 +7,7 @@ public class DataManager : MonoBehaviour
     public static DataManager instance;
 
     [Inject] private Inventory _inventory;
+    [Inject] private NavMeshManager _navMesh;
 
     private void Awake()
     {
@@ -20,6 +21,11 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
         LoadGameData();
+    }
+
+    private void Start()
+    {
+        _navMesh.BakeNavMesh();
     }
 
     private void LoadGameData()

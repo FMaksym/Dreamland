@@ -58,7 +58,9 @@ public class IslandManager : MonoBehaviour
             landData.price = saveData.price;
             landData.landObjectID = saveData.landObjectID;
 
-            landObject.landObject.SetActive(landData.mainObjectActive);
+            landData.gameObject.SetActive(landData.isActive);
+
+            landObject.landObject.gameObject.SetActive(landData.mainObjectActive);
             landObject.priceObject.gameObject.SetActive(landData.priceObjectActive);
 
             landObject.priceObject.Price = landData.price;

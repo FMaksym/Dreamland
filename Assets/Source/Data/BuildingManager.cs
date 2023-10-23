@@ -59,8 +59,11 @@ public class BuildingManager : MonoBehaviour
             buildData.price = saveData.price;
             buildData.buildObjectID = saveData.buildObjectID;
 
-            buildObject.buildObject.SetActive(buildData.mainObjectActive);
+            buildData.gameObject.SetActive(buildData.isActive);
+
+            buildObject.buildObject.gameObject.SetActive(buildData.mainObjectActive);
             buildObject.priceObject.gameObject.SetActive(buildData.priceObjectActive);
+
             buildObject.priceObject.Price = buildData.price;
         }
     }
