@@ -49,14 +49,6 @@ public class MiningResourceTransfer : MonoBehaviour
         ResourceMine._currentProduction = 0;
     }
 
-    //private IEnumerator CollectItem(GameObject item, float time)
-    //{
-    //    Vector3 position = item.transform.position;
-    //    item.transform.position = Vector3.MoveTowards(position, _playerPosition + new Vector3(0f, 1f, 0f), Time.deltaTime * _speed);
-    //    yield return new WaitForSeconds(time);
-    //    item.transform.position = position;
-    //}
-
     private void Collect(GameObject item)
     {
         Vector3 originalPosition = item.transform.position;

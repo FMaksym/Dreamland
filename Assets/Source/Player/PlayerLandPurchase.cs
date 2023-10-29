@@ -43,7 +43,8 @@ public class PlayerLandPurchase : MonoBehaviour
                 int amountToSpend = Mathf.Min(playerResource, resource.Value);
                 _playerInventory.RemoveItem(resource.Key, amountToSpend);
                 newPrice[resource.Key] -= amountToSpend;
-            }        
+            }
+            DataManager.instance.GameDataChanged();
         }
 
         landPrice.Price = newPrice;
@@ -62,11 +63,12 @@ public class PlayerLandPurchase : MonoBehaviour
                 landPrice.landForPurchaseData.priceObjectActive = false;
             }
 
+            DataManager.instance.GameDataChanged();
             StartCoroutine(PurchaseLand());
         }
     }
 
-    IEnumerator PurchaseLand()
+    private IEnumerator PurchaseLand()
     {
         _playerMovement.Moved(false);
         _navMesh.BakeNavMesh();
@@ -76,10 +78,4 @@ public class PlayerLandPurchase : MonoBehaviour
         _playerMovement.Moved(true);
 
     }
-
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, _radius);
-    //}
 }

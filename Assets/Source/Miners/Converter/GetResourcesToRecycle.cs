@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -36,6 +34,7 @@ public class GetResourcesToRecycle : MonoBehaviour
             int amountToSpend = Mathf.Min(playerResource, neededCount);
             inventory.RemoveItem(resourceConvert.InputResourceName, amountToSpend);
             AddingResources(amountToSpend);
+            DataManager.instance.GameDataChanged();
         }
     }
 

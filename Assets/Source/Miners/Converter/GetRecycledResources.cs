@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -33,10 +32,8 @@ public class GetRecycledResources : MonoBehaviour
                 resource.transform.position = Vector3.MoveTowards(resource.transform.position, player.transform.position + new Vector3(0f, 0.5f, 0f), _speed * Time.deltaTime);
             }
             ResourceConvert._currentConversion = 0;
-            // Проверяем, были ли все ресурсы собраны
-            if (_resourcesToCollect.All(r => !r.activeInHierarchy))
+            if (_resourcesToCollect.All(resources => !resources.activeInHierarchy))
             {
-                // Возвращаем ресурсы обратно на свои позиции
                 foreach (GameObject resource in _resourcesToCollect)
                 {
                     if (_originalPositions.ContainsKey(resource))
@@ -71,7 +68,6 @@ public class GetRecycledResources : MonoBehaviour
 
         if (!isPlayerInRange && _resourcesToCollect.Count > 0)
         {
-            // Возвращаем ресурсы обратно на свои позиции
             foreach (GameObject resource in _resourcesToCollect)
             {
                 if (_originalPositions.ContainsKey(resource))
@@ -79,11 +75,8 @@ public class GetRecycledResources : MonoBehaviour
                     resource.transform.position = _originalPositions[resource];
                 }
             }
-
-            // Очищаем список ресурсов для сбора
             _resourcesToCollect.Clear();
         }
-
         ResourceConvert.IsCollecting = isPlayerInRange;
     }
 

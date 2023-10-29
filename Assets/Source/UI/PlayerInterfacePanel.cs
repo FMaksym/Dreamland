@@ -9,9 +9,6 @@ public class PlayerInterfacePanel : MonoBehaviour
     [SerializeField] private GameObject _mapPanel;
     [SerializeField] private GameObject _settingsPanel;
 
-    [Header("Panels")]
-    [SerializeField] private GameObject _dataPanel;
-
     [Inject] private PlayerTouchMovement _playerMovement;
 
     public void OnClickInventory()
@@ -32,10 +29,5 @@ public class PlayerInterfacePanel : MonoBehaviour
         panelToClose.SetActive(false);
         panelToOpen.SetActive(true);
         _playerMovement.Moved(false);
-    }
-
-    public void OnClickData()
-    {
-        OpenClosePanels(_playerInterfacePanel, _dataPanel);
     }
 }

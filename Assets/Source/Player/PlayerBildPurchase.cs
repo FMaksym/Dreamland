@@ -14,10 +14,10 @@ public class PlayerBildPurchase : MonoBehaviour
 
     private void FixedUpdate()
     {
-        FindLandPrice();
+        FindBuildPrice();
     }
 
-    private void FindLandPrice()
+    private void FindBuildPrice()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, _radius);
         foreach (var collider in colliders)
@@ -43,6 +43,7 @@ public class PlayerBildPurchase : MonoBehaviour
                 _playerInventory.RemoveItem(resource.Key, amountToSpend);
                 newPrice[resource.Key] -= amountToSpend;
             }
+            DataManager.instance.GameDataChanged();
         }
 
         buildPrice.Price = newPrice;
@@ -61,6 +62,7 @@ public class PlayerBildPurchase : MonoBehaviour
                 buildPrice.buildForPurchaseData.priceObjectActive = false;
             }
 
+            DataManager.instance.GameDataChanged();
             StartCoroutine(PurchaseBild());
         }
     }
@@ -74,10 +76,4 @@ public class PlayerBildPurchase : MonoBehaviour
 
         _playerMovement.Moved(true);
     }
-
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.DrawWireSphere(transform.position, _radius);
-    //}
 }

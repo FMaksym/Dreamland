@@ -21,6 +21,7 @@ public class ItemCollector : MonoBehaviour
         if (collectable != null)
         {
             CollectItem(other, collectable);
+            DataManager.instance.GameDataChanged();
         }
     }
 

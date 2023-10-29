@@ -8,9 +8,6 @@ public static class SaveSystem
 {
     public static void SaveData<T>(string fileName, T data)
     {
-        //string path = Application.persistentDataPath + "/" + fileName;
-        //string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
-
         string jsonData = JsonConvert.SerializeObject(data);
         string path = Path.Combine(Application.persistentDataPath, fileName);
         File.WriteAllText(path, jsonData);
@@ -18,27 +15,6 @@ public static class SaveSystem
 
     public static T LoadData<T>(string fileName, T defaultData = default)
     {
-        //string path = Path.Combine(Application.persistentDataPath, fileName);
-        //string path = Application.persistentDataPath + "/" + fileName;
-
-        //if (CheckFileExistance(path))
-        //{
-        //    string jsonData = File.ReadAllText(path);
-        //    if (!string.IsNullOrEmpty(jsonData) && jsonData != "{}" && jsonData != " ")
-        //    {
-        //        try
-        //        {
-        //            return JsonConvert.DeserializeObject<T>(jsonData);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Debug.LogError($"Error deserializing JSON for file {fileName}: {e}");
-        //        }
-        //    }
-        //}
-
-        //return defaultData;
-
         string path = Path.Combine(Application.persistentDataPath, fileName);
         if (File.Exists(path))
         {
@@ -96,24 +72,5 @@ public static class SaveSystem
         {
             return defaultData;
         }
-    }
-
-    private static bool CheckFileExistance(string filePath, bool canCreate = false)
-    {
-        if (!File.Exists(filePath))
-        {
-            if (canCreate)
-            {
-                File.Create(filePath).Close();
-            }
-            return false;
-        }
-
-        return true;
-    }
-
-    public static string GetPersistentDataPath()
-    {
-        return Application.persistentDataPath;
     }
 }
