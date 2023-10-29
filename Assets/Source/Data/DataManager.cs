@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Zenject;
+using System.IO;
 
 public class DataManager : MonoBehaviour
 {
+    public DataPanel dataPanel;
+
     public static DataManager instance;
 
     [Inject] private Inventory _inventory;
@@ -20,11 +23,11 @@ public class DataManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        LoadGameData();
     }
 
     private void Start()
     {
+        LoadGameData();
         _navMesh.BakeNavMesh();
     }
 
@@ -39,6 +42,14 @@ public class DataManager : MonoBehaviour
         BuildingManager.instance.SetBuildingDataFromSaveData(loadBuildingsData);
         IslandManager.instance.SetIslandsDataFromSaveData(loadIslandsData);
         _inventory.SetItems(loadInventoryData);
+
+        SaveGameData();
+    }
+
+    public void LoadData()
+    {
+        List<LandForPurchaseSaveData> loadIslandsData = SaveSystem.LoadData<List<LandForPurchaseSaveData>>("islands.json", IslandManager.instance.GetIslandsSaveData());
+        dataPanel._dataPathText.text = loadIslandsData.ToString();
     }
 
     private void SaveGameData()
@@ -48,6 +59,25 @@ public class DataManager : MonoBehaviour
         SaveData("buildings.json", saveBuildingsData);
         SaveData("islands.json", saveIslandsData);
         SaveSystem.SaveInventoryData("inventory.json", _inventory);
+    }
+
+    public void Save()
+    {
+        //List<BuildForPurchaseSaveData> saveBuildingsData = BuildingManager.instance.GetBuildingSaveData();
+        //string jsonData = JsonConvert.SerializeObject(saveBuildingsData, Formatting.Indented);
+        //dataPanel._dataPathText.text = jsonData.ToString();
+
+        if (File.Exists(Application.persistentDataPath + "/buildings.json"))
+        {
+            dataPanel._dataPathText.text = "File here";
+        }
+        else
+        {
+            dataPanel._dataPathText.text = "File not here";
+            //File.Create(Application.persistentDataPath + "/buildings.json");
+        }
+
+        SaveGameData();
     }
 
     public void SaveData<T>(string fileName, T data) => SaveSystem.SaveData(fileName, data);

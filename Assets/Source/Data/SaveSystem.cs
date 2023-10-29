@@ -8,23 +8,42 @@ public static class SaveSystem
 {
     public static void SaveData<T>(string fileName, T data)
     {
-        string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
-        #if UNITY_EDITOR
-            string path = Path.Combine(Application.persistentDataPath, fileName);
-        #elif UNITY_ANDROID
-        string path = Path.Combine(Application.persistentDataPath + "/files/", fileName);
-        #endif
+        //string path = Application.persistentDataPath + "/" + fileName;
+        //string jsonData = JsonConvert.SerializeObject(data, Formatting.Indented);
+
+        string jsonData = JsonConvert.SerializeObject(data);
+        string path = Path.Combine(Application.persistentDataPath, fileName);
         File.WriteAllText(path, jsonData);
     }
 
     public static T LoadData<T>(string fileName, T defaultData = default)
     {
-        string path = Path.Combine(Application.persistentDataPath, fileName);
+        //string path = Path.Combine(Application.persistentDataPath, fileName);
+        //string path = Application.persistentDataPath + "/" + fileName;
 
+        //if (CheckFileExistance(path))
+        //{
+        //    string jsonData = File.ReadAllText(path);
+        //    if (!string.IsNullOrEmpty(jsonData) && jsonData != "{}" && jsonData != " ")
+        //    {
+        //        try
+        //        {
+        //            return JsonConvert.DeserializeObject<T>(jsonData);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            Debug.LogError($"Error deserializing JSON for file {fileName}: {e}");
+        //        }
+        //    }
+        //}
+
+        //return defaultData;
+
+        string path = Path.Combine(Application.persistentDataPath, fileName);
         if (File.Exists(path))
         {
             string jsonData = File.ReadAllText(path);
-            if (!string.IsNullOrEmpty(jsonData) && jsonData != "{}")
+            if (!string.IsNullOrEmpty(jsonData) && jsonData != "{}" && jsonData != " ")
             {
                 try
                 {
@@ -36,12 +55,6 @@ public static class SaveSystem
                 }
             }
         }
-        else
-        {
-            Debug.LogWarning("Save file not found. Creating new file...");
-            File.Create(path).Close();
-        }
-
         return defaultData;
     }
 
@@ -50,12 +63,12 @@ public static class SaveSystem
         InventorySaveData saveData = new InventorySaveData();
         saveData.items = new List<InventoryItemSaveData>();
 
-        foreach (var kvp in inventory.GetItems())
+        foreach (var item in inventory.GetItems())
         {
             InventoryItemSaveData itemSaveData = new InventoryItemSaveData()
             {
-                itemName = kvp.Key,
-                amount = kvp.Value
+                itemName = item.Key,
+                amount = item.Value
             };
 
             saveData.items.Add(itemSaveData);
@@ -83,5 +96,24 @@ public static class SaveSystem
         {
             return defaultData;
         }
+    }
+
+    private static bool CheckFileExistance(string filePath, bool canCreate = false)
+    {
+        if (!File.Exists(filePath))
+        {
+            if (canCreate)
+            {
+                File.Create(filePath).Close();
+            }
+            return false;
+        }
+
+        return true;
+    }
+
+    public static string GetPersistentDataPath()
+    {
+        return Application.persistentDataPath;
     }
 }
