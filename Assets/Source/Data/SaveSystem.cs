@@ -73,4 +73,13 @@ public static class SaveSystem
             return defaultData;
         }
     }
+
+    public static void DeleteJsonFile(string fileName)
+    {
+        string path = Path.Combine(Application.persistentDataPath, fileName);
+        if (File.Exists(path))
+        {
+            File.Delete(path);
+        }
+    }
 }

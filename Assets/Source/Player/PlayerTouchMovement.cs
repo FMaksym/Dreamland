@@ -7,6 +7,7 @@ public class PlayerTouchMovement : MonoBehaviour
 {
     public float _speed;
     public Animator _animator;
+    public AudioClip moveSound;
 
     private bool CanMove = true;
     private Finger _movementFinger;
@@ -15,6 +16,7 @@ public class PlayerTouchMovement : MonoBehaviour
     [SerializeField] private Vector2 _joystickSize = new (500, 500);
     [SerializeField] private FloatingJoystick _joystick;
     [SerializeField] private NavMeshAgent _player;
+    [SerializeField] private AudioSource audioSource;
 
     private void OnEnable()
     {
@@ -128,5 +130,10 @@ public class PlayerTouchMovement : MonoBehaviour
             _animator.SetFloat("MoveX", 0f);
             _animator.SetFloat("MoveZ", 0f);
         }
+    }
+
+    public void PlayMoveSound()
+    {
+        audioSource.PlayOneShot(moveSound);
     }
 }

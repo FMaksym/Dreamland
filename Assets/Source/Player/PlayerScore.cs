@@ -13,6 +13,9 @@ public class PlayerScore : MonoBehaviour
 
     private int _levelScoreStage = 100;
 
+    public delegate void LevelUpEventHandler();
+    public static event LevelUpEventHandler OnLevelUp;
+
     private void Awake()
     {
         LoadData();
@@ -34,6 +37,7 @@ public class PlayerScore : MonoBehaviour
             _playerMaxScoreForCurrentLevel += _levelScoreStage;
             _playerLevel++;
             _levelText.text = _playerLevel.ToString();
+            OnLevelUp?.Invoke();
         }
 
         _scoreLine.fillAmount = ((float)_playerCurrentScoreAmount / _playerMaxScoreForCurrentLevel);
@@ -53,6 +57,8 @@ public class PlayerScore : MonoBehaviour
         _playerLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
         _playerCurrentScoreAmount = PlayerPrefs.GetInt("PlayerCurrentScore", 0);
         _playerMaxScoreForCurrentLevel = PlayerPrefs.GetInt("PlayerMaxScore", 50);
+
+        _scoreLine.fillAmount = ((float)_playerCurrentScoreAmount / _playerMaxScoreForCurrentLevel);
 
         if (_playerLevel <= 0)
         {

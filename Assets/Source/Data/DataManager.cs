@@ -24,7 +24,7 @@ public class DataManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -35,6 +35,7 @@ public class DataManager : MonoBehaviour
     private void Start()
     {
         LoadGameData();
+        StartCoroutine(WaitAndBake(1.5f));
         _navMesh.BakeNavMesh();
     }
 
@@ -79,13 +80,28 @@ public class DataManager : MonoBehaviour
     }
 
 
-    private void OnApplicationQuit()
-    {
-        SaveGameData();
-    }
+    //private void OnApplicationQuit()
+    //{
+    //    SaveGameData();
+    //}
 
     private void OnDestroy()
     {
         OnGameDataChanged -= HandleGameDataChanged;
+    }
+
+    private IEnumerator WaitAndBake(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _navMesh.BakeNavMesh();
+    }
+
+    public void ClearAllData()
+    {
+        SaveSystem.DeleteJsonFile("buildings.json");
+        SaveSystem.DeleteJsonFile("islands.json");
+        SaveSystem.DeleteJsonFile("inventory.json");
+
+        PlayerPrefs.DeleteAll();
     }
 }

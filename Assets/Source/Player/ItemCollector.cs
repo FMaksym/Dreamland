@@ -10,6 +10,9 @@ public class ItemCollector : MonoBehaviour
 
     private Inventory inventory;
 
+    public delegate void CollectItemEventHandler();
+    public static event CollectItemEventHandler Collect;
+
     private void Awake()
     {
         inventory = GetComponent<Inventory>();
@@ -29,6 +32,7 @@ public class ItemCollector : MonoBehaviour
     {
         collectable.Collect(inventory);
         playerScore.AddScore(collectable.GetScore());
+        Collect?.Invoke();
 
         _scores[_index].gameObject.SetActive(true);
         _scores[_index].position = transform.position + new Vector3(Random.Range(-radiusScorePosition, radiusScorePosition),

@@ -8,6 +8,7 @@ public class PlayerInterfacePanel : MonoBehaviour
     [SerializeField] private GameObject _inventoryPanel;
     [SerializeField] private GameObject _mapPanel;
     [SerializeField] private GameObject _settingsPanel;
+    [SerializeField] private GameObject _shopPanel;
 
     [Inject] private PlayerTouchMovement _playerMovement;
 
@@ -22,6 +23,10 @@ public class PlayerInterfacePanel : MonoBehaviour
     public void OnClickSettings()
     {
         OpenClosePanels(_playerInterfacePanel, _settingsPanel);
+    }
+    public void OnClickShop()
+    {
+        OpenClosePanels(_playerInterfacePanel, _shopPanel);
     }
 
     private void OpenClosePanels(GameObject panelToClose, GameObject panelToOpen)

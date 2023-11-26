@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using Cinemachine;
 using Zenject;
 
 public class PlayerLandPurchase : MonoBehaviour
@@ -12,6 +11,9 @@ public class PlayerLandPurchase : MonoBehaviour
     [Inject] private PlayerTouchMovement _playerMovement;
     [Inject] private Inventory _playerInventory;
     [Inject] private NavMeshManager _navMesh;
+
+    public delegate void BuyLandEventHandler();
+    public static event BuyLandEventHandler BuyLand;
 
     private void FixedUpdate()
     {
@@ -63,19 +65,24 @@ public class PlayerLandPurchase : MonoBehaviour
                 landPrice.landForPurchaseData.priceObjectActive = false;
             }
 
+            BuyLand?.Invoke();
             DataManager.instance.GameDataChanged();
             StartCoroutine(PurchaseLand());
+            StartCoroutine(WaitAndMove(0.5f));
         }
     }
 
     private IEnumerator PurchaseLand()
     {
         _playerMovement.Moved(false);
-        _navMesh.BakeNavMesh();
-
         yield return new WaitForSeconds(2f);
+        _navMesh.BakeNavMesh();
+    }
 
+    IEnumerator WaitAndMove(float time)
+    {
+        
+        yield return new WaitForSeconds(time);
         _playerMovement.Moved(true);
-
     }
 }

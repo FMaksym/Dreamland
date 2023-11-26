@@ -12,6 +12,9 @@ public class PlayerBildPurchase : MonoBehaviour
     [Inject] private Inventory _playerInventory;
     [Inject] private NavMeshManager _navMesh;
 
+    public delegate void BuyBuildEventHandler();
+    public static event BuyBuildEventHandler BuyBuild;
+
     private void FixedUpdate()
     {
         FindBuildPrice();
@@ -62,18 +65,24 @@ public class PlayerBildPurchase : MonoBehaviour
                 buildPrice.buildForPurchaseData.priceObjectActive = false;
             }
 
+            BuyBuild?.Invoke();
             DataManager.instance.GameDataChanged();
             StartCoroutine(PurchaseBild());
+            StartCoroutine(WaitAndMove(1));
         }
     }
 
     IEnumerator PurchaseBild()
     {
         _playerMovement.Moved(false);
-        _navMesh.BakeNavMesh();
-
         yield return new WaitForSeconds(2f);
+        _navMesh.BakeNavMesh();
+    }
 
+    IEnumerator WaitAndMove(float time)
+    {
+
+        yield return new WaitForSeconds(time);
         _playerMovement.Moved(true);
     }
 }
