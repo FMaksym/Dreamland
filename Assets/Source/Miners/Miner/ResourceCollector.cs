@@ -20,7 +20,7 @@ public class ResourceCollector : MonoBehaviour
     {
         foreach (GameObject resource in resourceMine.ResourceObjects)
         {
-            _originalPositions[resource] = resource.transform.position;
+            _originalPositions[resource] = resource.transform.localPosition;//
         }
     }
 
@@ -41,7 +41,7 @@ public class ResourceCollector : MonoBehaviour
                 {
                     if (_originalPositions.ContainsKey(resource))
                     {
-                        resource.transform.position = _originalPositions[resource];
+                        resource.transform.localPosition = _originalPositions[resource];//
                     }
                 }
                 _resourcesToCollect.Clear();
@@ -75,7 +75,7 @@ public class ResourceCollector : MonoBehaviour
             {
                 if (_originalPositions.ContainsKey(resource))
                 {
-                    resource.transform.position = _originalPositions[resource];
+                    resource.transform.localPosition = _originalPositions[resource];//
                 }
             }
 

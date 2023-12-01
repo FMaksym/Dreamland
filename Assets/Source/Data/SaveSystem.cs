@@ -74,6 +74,12 @@ public static class SaveSystem
         }
     }
 
+    public static bool CheackFile(string fileName)
+    {
+        string path = Path.Combine(Application.persistentDataPath, fileName);
+        return File.Exists(path);
+    }
+
     public static void DeleteJsonFile(string fileName)
     {
         string path = Path.Combine(Application.persistentDataPath, fileName);

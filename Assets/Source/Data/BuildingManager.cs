@@ -11,7 +11,6 @@ public class BuildingManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
         else
         {

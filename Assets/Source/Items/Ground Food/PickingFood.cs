@@ -19,7 +19,7 @@ public class PickingFood : MonoBehaviour
 
     private void Awake()
     {
-        _position = _startPosition.position;
+        _position = _startPosition.localPosition;//
     }
 
     private void Update()
@@ -55,7 +55,7 @@ public class PickingFood : MonoBehaviour
 
             _growFood.HarvestFood();
             isPickedUp = true;
-            transform.position = _position;
+            transform.localPosition = _position;
         }
     }
 

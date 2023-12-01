@@ -18,7 +18,7 @@ public class GetRecycledResources : MonoBehaviour
     {
         foreach (GameObject resource in ResourceConvert.OutputResourceObjects)
         {
-            _originalPositions[resource] = resource.transform.position;
+            _originalPositions[resource] = resource.transform.localPosition;
         }
     }
 
@@ -38,7 +38,7 @@ public class GetRecycledResources : MonoBehaviour
                 {
                     if (_originalPositions.ContainsKey(resource))
                     {
-                        resource.transform.position = _originalPositions[resource];
+                        resource.transform.localPosition = _originalPositions[resource];
                     }
                 }
                 _resourcesToCollect.Clear();
@@ -72,7 +72,7 @@ public class GetRecycledResources : MonoBehaviour
             {
                 if (_originalPositions.ContainsKey(resource))
                 {
-                    resource.transform.position = _originalPositions[resource];
+                    resource.transform.localPosition = _originalPositions[resource];
                 }
             }
             _resourcesToCollect.Clear();

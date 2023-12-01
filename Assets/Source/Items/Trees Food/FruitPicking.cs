@@ -22,7 +22,7 @@ public class FruitPicking : MonoBehaviour
         _position = new Vector3[_startPosition.Length];
         for (int i = 0; i < _startPosition.Length; i++)
         {
-            _position[i] = _startPosition[i].position;
+            _position[i] = _startPosition[i].localPosition;
         }
     }
 
@@ -70,7 +70,7 @@ public class FruitPicking : MonoBehaviour
     {
         for (int i = 0; i < _position.Length; i++)
         {
-            _fruitGrowth.foodPrefabs[i].transform.position = _position[i];
+            _fruitGrowth.foodPrefabs[i].transform.localPosition = _position[i];
         }
     }
 

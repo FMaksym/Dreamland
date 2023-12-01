@@ -6,6 +6,8 @@ using System.Collections;
 
 public class DataManager : MonoBehaviour
 {
+    public int _firstStart;
+
     public static DataManager instance;
 
     [Inject] private Inventory _inventory;
@@ -24,11 +26,16 @@ public class DataManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+        }
+
+        _firstStart = PlayerPrefs.GetInt("FirstStart", 1);
+        if (_firstStart == 1)
+        {
+            PlayerPrefs.DeleteAll();
         }
     }
 
@@ -44,10 +51,12 @@ public class DataManager : MonoBehaviour
         List<BuildForPurchaseSaveData> loadBuildingsData = SaveSystem.LoadData<List<BuildForPurchaseSaveData>>("buildings.json", BuildingManager.instance.GetBuildingSaveData());
         List<LandForPurchaseSaveData> loadIslandsData = SaveSystem.LoadData<List<LandForPurchaseSaveData>>("islands.json", IslandManager.instance.GetIslandsSaveData());
         Dictionary<string, int> loadInventoryData = SaveSystem.LoadInventoryData("inventory.json", _inventory.GetItems());
+        
         BuildingManager.instance.SetBuildingDataFromSaveData(loadBuildingsData);
         IslandManager.instance.SetIslandsDataFromSaveData(loadIslandsData);
         _inventory.SetItems(loadInventoryData);
 
+        PlayerPrefs.SetInt("FirstStart", 0);
         SaveGameData();
     }
 

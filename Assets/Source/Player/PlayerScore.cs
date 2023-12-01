@@ -16,7 +16,7 @@ public class PlayerScore : MonoBehaviour
     public delegate void LevelUpEventHandler();
     public static event LevelUpEventHandler OnLevelUp;
 
-    private void Awake()
+    private void Start()
     {
         LoadData();
         InitializeScore();
