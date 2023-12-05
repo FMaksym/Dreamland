@@ -12,7 +12,7 @@
    
    </p>In the folders(Assets/Build) you can find a ready-made build for testing the game, you need to follow the link and download the apk file. 
    
-   </p>Game optimized for mobile(materials, meshes, source etc.).
+   </p>Game optimized for mobile(materials, meshes(Combine mesh), Occlusion culling, code).
 
 </p>The result can be seen at the link in the video:
  <div align="center">
