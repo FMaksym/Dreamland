@@ -36,9 +36,9 @@ public class ResourceDisplay : MonoBehaviour
     private string FormatNumber(int num)
     {
         if (num >= 1000000)
-            return (num / 1000000).ToString() + "M";
+            return ((float)num / 1000000).ToString() + "M";
         else if (num >= 1000)
-            return (num / 1000).ToString() + "K";
+            return ((float)num / 1000).ToString() + "K";
         else
             return num.ToString();
     }

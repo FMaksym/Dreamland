@@ -75,7 +75,6 @@ public class DataManager : MonoBehaviour
     {
         StartCoroutine(Wait());
         SaveGameData();
-        Debug.Log("Save");
     }
 
     public void GameDataChanged()

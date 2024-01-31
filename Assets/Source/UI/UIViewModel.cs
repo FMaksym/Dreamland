@@ -58,7 +58,7 @@ public class UIViewModel : MonoBehaviour
         view.RejectClear(model);
     }
 
-    public void OpenOffersPanel(GameObject panel)
+    public void OpenOffersPanel(RectTransform panel)
     {
         view.OpenOffersPanel(model, panel);
     }
