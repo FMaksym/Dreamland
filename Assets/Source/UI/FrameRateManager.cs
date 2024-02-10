@@ -1,20 +1,24 @@
 using System.Collections;
 using System.Threading;
 using UnityEngine;
+
 public class FrameRateManager : MonoBehaviour
 {
     [Header("Frame Settings")]
-    int MaxRate = 9999;
     public float TargetFrameRate = 60.0f;
-    float currentFrameTime;
-    void Awake()
+
+    private int MaxRate = 9999;
+    private float currentFrameTime;
+
+    private void Awake()
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = MaxRate;
         currentFrameTime = Time.realtimeSinceStartup;
-        StartCoroutine(nameof(WaitForNextFrame));
+        StartCoroutine("WaitForNextFrame");
     }
-    IEnumerator WaitForNextFrame()
+
+    private IEnumerator WaitForNextFrame()
     {
         while (true)
         {
