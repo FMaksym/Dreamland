@@ -1,5 +1,5 @@
 <h1 align="center">
-   Dreamland
+   Dreamland (previously Fantasy Farm)
 </h1> 
 
    The project called "Dreamland" is a game, the essence of which is to discover all the territories and buildings on an unusual island, which consists of several islands, with different seasons, connected to each other by paths and bridges. They must be opened to the player with the help of resources that are mined by various mines or resource processors. 
