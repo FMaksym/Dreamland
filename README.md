@@ -1,5 +1,5 @@
 <h1 align="center">
-   Dreamland (previously Fantasy Farm)
+   Dreamland
 </h1> 
 
    The project called "Dreamland" is a game, the essence of which is to discover all the territories and buildings on an unusual island, which consists of several islands, with different seasons, connected to each other by paths and bridges. They must be opened to the player with the help of resources that are mined by various mines or resource processors. 
@@ -51,7 +51,7 @@ https://github.com/FMaksym/FantasyFarm/blob/main/Assets/Build</p>
 <li>Factory systems;</li> 
 <li>Inventory system;</li> 
 <li>PlayerPrefs;</li> 
-<li>Saving data in a JSON fil;e</li> 
+<li>Saving data in a JSON file;</li> 
 <li>Optimization for a mobile device;</li> 
 <li>Sound settings system.</li> </ul>  
 <p>I wrote everything that I remember now, but that's not all.</p>
