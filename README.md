@@ -71,8 +71,8 @@ Here are screenshots of the completed work:
 </p>
 
 <p align="center">
-  <img src="https://github.com/FMaksym/Dreamland/raw/main/Assets/Media/Dungeon_foto.png" title="View of the dungeon in the game" width="250"/>
-  <img src="https://github.com/FMaksym/Dreamland/raw/main/Assets/Media/Dungeon2_foto.png" title="View of the dungeon in the game" width="250"/>
+  <img src="https://github.com/FMaksym/Dreamland/raw/main/Assets/Media/Dungeon_foto.png" title="View of the dungeon in the game" width="200"/>
+  <img src="https://github.com/FMaksym/Dreamland/raw/main/Assets/Media/Dungeon2_foto.png" title="View of the dungeon in the game" width="200"/>
 </p>
 
 <p align="center">
