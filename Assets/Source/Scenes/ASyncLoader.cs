@@ -6,12 +6,15 @@ using UnityEngine.UI;
 
 public class ASyncLoader : MonoBehaviour
 {
+    [Header("Scene Name")]
+    [SerializeField] private string _sceneName;
+
     [Header("Progressbar")]
     [SerializeField]private Image _progress;
 
     private void Start()
     {
-        StartCoroutine(LoadGameASync("Game"));
+        StartCoroutine(LoadGameASync(_sceneName));
     }
 
     IEnumerator LoadGameASync(string sceneLoadName)

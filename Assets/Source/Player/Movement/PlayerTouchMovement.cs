@@ -10,6 +10,7 @@ public class PlayerTouchMovement : MonoBehaviour
     public AudioClip moveSound;
 
     private bool CanMove = true;
+    private bool IsMove;
     private Finger _movementFinger;
     private Vector2 _movementAmount;
 
@@ -66,7 +67,9 @@ public class PlayerTouchMovement : MonoBehaviour
                 }
 
                 _joystick.Knob.anchoredPosition = knobPosition;
-                _movementAmount = knobPosition / maxMovement; 
+                _movementAmount = knobPosition / maxMovement;
+
+                IsMove = true;
             }
         }
     }
@@ -81,6 +84,7 @@ public class PlayerTouchMovement : MonoBehaviour
                 _joystick.Knob.anchoredPosition = Vector2.zero;
                 _joystick.gameObject.SetActive(false);
                 _movementAmount = Vector2.zero;
+                IsMove = false;
             }
         }
     }
@@ -99,6 +103,7 @@ public class PlayerTouchMovement : MonoBehaviour
                 }
                 _joystick.RectTransform.sizeDelta = _joystickSize;
                 _joystick.RectTransform.anchoredPosition = ClampStartPosition(touchedFinger.screenPosition);
+                IsMove = true;
             }
         }
     }
@@ -122,7 +127,7 @@ public class PlayerTouchMovement : MonoBehaviour
         return startPosition;
     }
 
-    public void Moved(bool value)
+    public void CanMoved(bool value)
     {
         CanMove = value;
 
@@ -133,8 +138,11 @@ public class PlayerTouchMovement : MonoBehaviour
             _movementAmount = Vector2.zero;
             _animator.SetFloat("MoveX", 0f);
             _animator.SetFloat("MoveZ", 0f);
+            IsMove = false;
         }
     }
+
+    public bool IsPlayerMove() => IsMove;
 
     public void PlayMoveSound()
     {

@@ -26,7 +26,7 @@ public class PlayerScore : MonoBehaviour
     {
         _levelText.text = _playerLevel.ToString();
         _scoreText.text = $"{_playerCurrentScoreAmount}/{_playerMaxScoreForCurrentLevel}";
-        _scoreLine.fillAmount = ((float)_playerCurrentScoreAmount / _playerMaxScoreForCurrentLevel);
+        _scoreLine.fillAmount = (float) _playerCurrentScoreAmount / _playerMaxScoreForCurrentLevel;
     }
 
     public void AddScore(int score)
@@ -40,7 +40,7 @@ public class PlayerScore : MonoBehaviour
             OnLevelUp?.Invoke();
         }
 
-        _scoreLine.fillAmount = ((float)_playerCurrentScoreAmount / _playerMaxScoreForCurrentLevel);
+        _scoreLine.fillAmount = (float) _playerCurrentScoreAmount / _playerMaxScoreForCurrentLevel;
         _scoreText.text = $"{_playerCurrentScoreAmount}/{_playerMaxScoreForCurrentLevel}";
         SaveData();
     }
@@ -58,7 +58,7 @@ public class PlayerScore : MonoBehaviour
         _playerCurrentScoreAmount = PlayerPrefs.GetInt("PlayerCurrentScore", 0);
         _playerMaxScoreForCurrentLevel = PlayerPrefs.GetInt("PlayerMaxScore", 50);
 
-        _scoreLine.fillAmount = ((float)_playerCurrentScoreAmount / _playerMaxScoreForCurrentLevel);
+        //_scoreLine.fillAmount = (float) _playerCurrentScoreAmount / _playerMaxScoreForCurrentLevel;
 
         if (_playerLevel <= 0)
         {

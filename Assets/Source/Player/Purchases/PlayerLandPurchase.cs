@@ -74,7 +74,7 @@ public class PlayerLandPurchase : MonoBehaviour
 
     private IEnumerator PurchaseLand()
     {
-        _playerMovement.Moved(false);
+        _playerMovement.CanMoved(false);
         yield return new WaitForSeconds(2f);
         _navMesh.BakeNavMesh();
     }
@@ -82,6 +82,6 @@ public class PlayerLandPurchase : MonoBehaviour
     private IEnumerator WaitAndMove(float time)
     {
         yield return new WaitForSeconds(time);
-        _playerMovement.Moved(true);
+        _playerMovement.CanMoved(true);
     }
 }

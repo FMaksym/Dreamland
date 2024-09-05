@@ -8,7 +8,7 @@ public class UIView : MonoBehaviour
     public void OpenPanel(UIModel model, RectTransform panelTransform)
     {
         model.playerInterfacePanel.gameObject.SetActive(false);
-        model.playerMovement.Moved(false);
+        model.playerMovement.CanMoved(false);
         panelTransform.gameObject.SetActive(true);
         OpenPanelAnimation(model, panelTransform);
     }
@@ -19,7 +19,7 @@ public class UIView : MonoBehaviour
         {
             panelToClose.gameObject.SetActive(false);
             model.playerInterfacePanel.gameObject.SetActive(true);
-            model.playerMovement.Moved(true);
+            model.playerMovement.CanMoved(true);
         });
         
     }

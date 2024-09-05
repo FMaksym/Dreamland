@@ -31,7 +31,7 @@ public class Portal : MonoBehaviour
 
     private void TeleportPlayer(Vector3 position)
     {
-        _player.Moved(false);
+        _player.CanMoved(false);
         _player.gameObject.SetActive(false);
         _player.transform.position = _teleportPosition;
         StartCoroutine(Wait(0.5f));
@@ -41,7 +41,7 @@ public class Portal : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _player.gameObject.SetActive(true);
-        _player.Moved(true);
+        _player.CanMoved(true);
     }
 
     private void OnDrawGizmos()
