@@ -27,7 +27,7 @@
 * Animator;
 * NavMesh Surface;
 * Joystick control;
-* Factory systems; 
+* Factory systems(generate and convert materails); 
 * Inventory system; 
 * PlayerPrefs;
 * Saving data in a JSON file; 
