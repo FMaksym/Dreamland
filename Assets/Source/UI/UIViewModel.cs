@@ -5,6 +5,11 @@ public class UIViewModel : MonoBehaviour
     [SerializeField] private UIModel model;
     [SerializeField] private UIView view;
 
+    private void OnEnable()
+    {
+        AdRewardZoneTrigger.OnPlayerInAdRewardZone += OpenAdRewardPanel;
+    }
+
     public void OnClickInventory()
     {
         view.OpenPanel(model, model.inventoryPanel);
@@ -25,6 +30,12 @@ public class UIViewModel : MonoBehaviour
         view.OpenPanel(model, model.shopPanel);
     }
 
+    public void OpenAdRewardPanel(ZoneReward reward)
+    {
+        view.InitializeAdRewardInfo(model, reward);
+        view.OpenPanel(model, model.adRewardPanel);
+    }
+
 
     public void OnClickCloseInventory()
     {
@@ -42,6 +53,12 @@ public class UIViewModel : MonoBehaviour
     {
         view.ClosePanel(model, model.shopPanel);
     }
+
+    public void OnClickCloseAdRewardPanel()
+    {
+        view.ClosePanel(model, model.adRewardPanel);
+    }
+
 
     public void OnClickClearData()
     {
@@ -61,5 +78,10 @@ public class UIViewModel : MonoBehaviour
     public void OpenOffersPanel(RectTransform panel)
     {
         view.OpenOffersPanel(model, panel);
+    }
+
+    private void OnDisable()
+    {
+        AdRewardZoneTrigger.OnPlayerInAdRewardZone += OpenAdRewardPanel;
     }
 }
