@@ -82,6 +82,6 @@ public class UIViewModel : MonoBehaviour
 
     private void OnDisable()
     {
-        AdRewardZoneTrigger.OnPlayerInAdRewardZone += OpenAdRewardPanel;
+        AdRewardZoneTrigger.OnPlayerInAdRewardZone -= OpenAdRewardPanel;
     }
 }

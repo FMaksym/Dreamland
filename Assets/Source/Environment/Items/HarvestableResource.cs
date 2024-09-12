@@ -10,7 +10,7 @@ public class HarvestableResource : MonoBehaviour
     [SerializeField] private string _nameOfAddItem;
     [SerializeField] private int _addAmount;
     [SerializeField] private float _maxCollectProgress = 100f;
-    [SerializeField] private float _collectSpeed = 10f;
+    [SerializeField] private float _collectSpeed;
     [SerializeField] private float _regenerationTime = 10f;
     [SerializeField] private GameObject _mainObject;
     [SerializeField] private GameObject _floorObject;
@@ -26,24 +26,40 @@ public class HarvestableResource : MonoBehaviour
     
     [Inject] private Inventory _inventory;
     [Inject] private PlayerTouchMovement _player;
+    [Inject] private PlayerAbilities _playerAbilities;
     [Inject] private NavMeshManager _navMesh;
+
+    private void OnEnable()
+    {
+        PlayerAbilities.PlayerAbilitiesUpgrade += UpdateCollectSpeed;
+    }
 
     private void Awake()
     {
         _playerChop = _player.GetComponent<PlayerChopResources>();
     }
 
+    private void Start()
+    {
+        UpdateCollectSpeed();
+    }
+
     private void Update()
     {
         if (_isHarvesting && !_isGrowing)
         {
-            _playerChop.CollectResources(_harvestType);
-
-            _progress += _collectSpeed * Time.deltaTime;
-
-            if (_progress >= _maxCollectProgress)
+            if (!_player.IsPlayerMove())
             {
-                Harvest();
+                _playerChop.CollectResources(_harvestType, transform);
+
+                _progress += _collectSpeed * Time.deltaTime;
+
+                if (_progress >= _maxCollectProgress)
+                {
+                    Harvest();
+                }
+            } else {
+                _playerChop.StopCollectResources(_harvestType);
             }
         }
 
@@ -65,7 +81,6 @@ public class HarvestableResource : MonoBehaviour
 
         if (_isGrowing && !_playerInTrigger && _isCollectAllHarvest)
         {
-            // Continue regeneration if player is not in trigger
             RegenerationCoroutine();
         }
     }
@@ -139,13 +154,25 @@ public class HarvestableResource : MonoBehaviour
         StartCoroutine(RegenerationCoroutine());
     }
 
+    private void UpdateCollectSpeed()
+    {
+        switch (_harvestType)
+        {
+            case PlayerChopResources.CollectType.Axe:
+                _collectSpeed = _playerAbilities.WoodcuttingSpeed;
+                break;
+            case PlayerChopResources.CollectType.Pickaxe:
+                _collectSpeed = _playerAbilities.StonecuttingSpeed;
+                break;
+        }
+    }
+
     private IEnumerator RegenerationCoroutine()
     {
         while (_isGrowing)
         {
             if (_playerInTrigger && !_isCollectAllHarvest)
             {
-                // Pause regeneration if player is in trigger
                 yield return new WaitUntil(() => !_playerInTrigger && _isCollectAllHarvest);
             }
 
@@ -154,12 +181,11 @@ public class HarvestableResource : MonoBehaviour
             _floorObject.SetActive(false);
             _mainObject.SetActive(true);
             _isGrowing = false;
-
-            //    if (!_isGrowing)
-            //    {
-            //        yield return new WaitForSeconds(1);
-            //        _navMesh.BakeNavMesh();
-            //    }
         }
+    }
+
+    private void OnDisable()
+    {
+        PlayerAbilities.PlayerAbilitiesUpgrade -= UpdateCollectSpeed;
     }
 }

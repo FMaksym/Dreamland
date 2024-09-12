@@ -75,10 +75,13 @@ SpriteAtlas:
     - {fileID: 2800000, guid: d71a87b3aa6e46a418ee22d3262ca184, type: 3}
     - {fileID: 2800000, guid: 2b1e98e07d975b64c8407ce600e9314f, type: 3}
     - {fileID: 2800000, guid: f624e7f37de1d354d8ddbec7b25efabb, type: 3}
+    - {fileID: 2800000, guid: 490960b295bedd846a48d3646f6099c9, type: 3}
+    - {fileID: 2800000, guid: a2503b103965f4c4fb6385e51a94e7b3, type: 3}
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
     packedSpriteRenderDataKeys:
+    - a2503b103965f4c4fb6385e51a94e7b3: 21300000
     - 61c940208c2ee6a4ba90e9aa1e8d729f: 21300000
     - d4662f300607d384195a933c4c4823b2: 21300000
     - 78bab1b0486c66e45b0c029a3abac1d8: 21300000
@@ -88,6 +91,7 @@ SpriteAtlas:
     - 539da142ff7899543ad76083d31a6529: 21300000
     - 8d416382e11248147bb5b3ad983f7456: 21300000
     - 08679aa20eceae54b976ab7f8379eb9c: 21300000
+    - 490960b295bedd846a48d3646f6099c9: 21300000
     - bc4a67e240047b841b41df47f23489d2: 21300000
     - e2fa70236ba6725428f87db5d85aa833: 21300000
     - bb08e9634f237a94ea5df848809a3c3c: 21300000
@@ -111,6 +115,7 @@ SpriteAtlas:
     - 86e7e60f16d61f7499c36797614ef4e7: 21300000
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: a2503b103965f4c4fb6385e51a94e7b3, type: 3}
   - {fileID: 21300000, guid: 61c940208c2ee6a4ba90e9aa1e8d729f, type: 3}
   - {fileID: 21300000, guid: d4662f300607d384195a933c4c4823b2, type: 3}
   - {fileID: 21300000, guid: 78bab1b0486c66e45b0c029a3abac1d8, type: 3}
@@ -120,6 +125,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 539da142ff7899543ad76083d31a6529, type: 3}
   - {fileID: 21300000, guid: 8d416382e11248147bb5b3ad983f7456, type: 3}
   - {fileID: 21300000, guid: 08679aa20eceae54b976ab7f8379eb9c, type: 3}
+  - {fileID: 21300000, guid: 490960b295bedd846a48d3646f6099c9, type: 3}
   - {fileID: 21300000, guid: bc4a67e240047b841b41df47f23489d2, type: 3}
   - {fileID: 21300000, guid: e2fa70236ba6725428f87db5d85aa833, type: 3}
   - {fileID: 21300000, guid: bb08e9634f237a94ea5df848809a3c3c, type: 3}
@@ -142,6 +148,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: c112940e60beb20418ad63edc3a34e23, type: 3}
   - {fileID: 21300000, guid: 86e7e60f16d61f7499c36797614ef4e7, type: 3}
   m_PackedSpriteNamesToIndex:
+  - land-navigation
   - grilled-cactus
   - wood
   - apple
@@ -151,6 +158,7 @@ SpriteAtlas:
   - egg
   - Gear
   - board
+  - build-navigation
   - wheat
   - axe
   - close-button

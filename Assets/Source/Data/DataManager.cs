@@ -37,13 +37,15 @@ public class DataManager : MonoBehaviour
         {
             PlayerPrefs.DeleteAll();
         }
+
+        
     }
 
     private void Start()
     {
         LoadGameData();
-        StartCoroutine(WaitAndBake(1.5f));
-        _navMesh.BakeNavMesh();
+        StartCoroutine(WaitAndBake(1f));
+        //_navMesh.BakeNavMesh();
     }
 
     private void LoadGameData()

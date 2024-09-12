@@ -16,9 +16,10 @@ public class PlayerChopResources : MonoBehaviour
         HandFromGround
     }
 
-    public void CollectResources(CollectType harvestType)
+    public void CollectResources(CollectType harvestType, Transform harvestableObject)
     {
         Collect(harvestType);
+        gameObject.transform.LookAt(harvestableObject.position);
     }
 
     public void StopCollectResources(CollectType harvestType)
@@ -28,25 +29,6 @@ public class PlayerChopResources : MonoBehaviour
 
     private void Collect(CollectType harvestType)
     {
-        //if (harvestType == CollectType.Axe)
-        //{
-        //    _axe.gameObject.SetActive(true);
-        //    animator.SetBool("IsChopWood", true);
-        //}
-        //else if (harvestType == CollectType.Pickaxe)
-        //{
-        //    _pickaxe.gameObject.SetActive(true);
-        //    animator.SetBool("IsChopStone", true);
-        //}
-        //else if(harvestType == CollectType.Hand)
-        //{
-        //    animator.SetBool("IsHarvestFood", true);
-        //}
-        //else
-        //{
-        //    animator.SetBool("IsHarvestFoodFromGround", true);
-        //}
-
         switch (harvestType)
         {
             case CollectType.Axe:
@@ -68,25 +50,6 @@ public class PlayerChopResources : MonoBehaviour
 
     private void StopCollect(CollectType harvestType)
     {
-        //if (harvestType == CollectType.Axe)
-        //{
-        //    animator.SetBool("IsChopWood", false);
-        //    _axe.gameObject.SetActive(false);
-        //}
-        //else if (harvestType == CollectType.Pickaxe)
-        //{
-        //    animator.SetBool("IsChopStone", false);
-        //    _pickaxe.gameObject.SetActive(false);
-        //}
-        //else if (harvestType == CollectType.Hand)
-        //{
-        //    animator.SetBool("IsHarvestFood", false);
-        //}
-        //else
-        //{
-        //    animator.SetBool("IsHarvestFoodFromGround", false);
-        //}
-
         switch (harvestType)
         {
             case CollectType.Axe: 
